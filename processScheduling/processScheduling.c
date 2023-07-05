@@ -99,8 +99,8 @@ int main(){
                 else if (c > 0){
                     // printf("waiting for child processes to finish\n");
                     // printf("a: %d, b: %d, c: %d\n", a, b, c);
+                    // variables a1, b1, c1 are here to represent if threads {a,b,c} have been executed otherwise set to 0
                     int a1 = 0 , b1 = 0, c1 = 0;
-                    int flagA = 0, flagB = 0, flagC = 0;
                     while(1){
                         if (a1 == 0){
                             a1 = waitpid(a, NULL, WNOHANG);
@@ -138,18 +138,15 @@ int main(){
                                 fclose(fp);
                             }
                         }
-                        if (a1 > 0 && flagA != 1){
+                        // if (a1 > 0 ){
                             // printf("time A end: %.9f\n", (((float)(ts1E.tv_sec - ts1S.tv_sec))+ (ts1E.tv_nsec - ts1S.tv_nsec)/1000000000.0));
-                            flagA = 1;
-                        }
-                        if (b1 > 0 && flagB != 1){
+                        // }
+                        // if (b1 > 0 ){
                             // printf("time B end: %.9f\n", (((float)(ts2E.tv_sec - ts2S.tv_sec))+ (ts2E.tv_nsec - ts2S.tv_nsec)/1000000000.0));
-                            flagB = 1;
-                        }
-                        if (c1 > 0 && flagC != 1){
+                        // }
+                        // if (c1 > 0 ){
                             // printf("time C end: %.9f\n", (((float)(ts3E.tv_sec - ts3S.tv_sec))+ (ts3E.tv_nsec - ts3S.tv_nsec)/1000000000.0));
-                            flagC = 1;
-                        }
+                        // }
                         if (a1 >0 && b1 > 0 && c1 > 0){
                             // printf("a1: %d, b1: %d, c1: %d\n", a1, b1, c1);
                             break;
